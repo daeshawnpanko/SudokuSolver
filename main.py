@@ -1,6 +1,7 @@
 import pprint
 from array import *
 import numpy as np
+import random as rd
 
 
 def solve(puzzle):
@@ -12,14 +13,15 @@ def solve(puzzle):
     count = 1
     for x in range(len(puzzle)):
         for y in range(len(puzzle)):
-            puzzle[x][y] = count
+            puzzle[x][y] = rd.randint(1,9)
             count += 1
+        count = 1
 
 
 
-
-    for x in range(len(puzzle)):
-        print(puzzle[x])
+    #
+    # for x in range(len(puzzle)):
+    #     print(puzzle[x])
     return True
 
     # print("This sudoku puzzle cannot be solved")
@@ -27,10 +29,23 @@ def solve(puzzle):
 
 
 def isValidNumber(puzzle, row, column, number):
+
+    #check row
+    for x in range(len(puzzle)):
+        if puzzle[row][x] == number:
+            print("row error",row, ",", x, "is", number)
+            return False
+
+    #check column
+    for x in range(len(puzzle)):
+        if puzzle[x][row] == number:
+            print(row,",", x, "is", number)
+            return False
+
     return True
 
 
-sudoku =   [[1,2,3,4,5,6,7,8,9],
+sudoku =   [[1,2,3,0,5,6,7,8,9],
            [0,0,0,0,0,0,0,0,0],
            [0,0,0,0,0,0,0,0,0],
            [0,0,0,0,0,0,0,0,0],
@@ -44,6 +59,7 @@ sudoku =   [[1,2,3,4,5,6,7,8,9],
 
 
 print(sudoku)
-solve(sudoku)
+print(isValidNumber(sudoku,0,1,4))
+#solve(sudoku)
 
 
