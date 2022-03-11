@@ -69,6 +69,7 @@ def isValidNumber(puzzle, row, column, number):
 def findEmpty(puzzle):
     for x in range(len(puzzle)):
         for y in range(len(puzzle)):
+            # Empty Squares are represented by 0s
             if puzzle[x][y] == 0:
                 return (x,y)
     return
